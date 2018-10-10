@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "ssh隧道及代理"
-date:  2018-10-10
 categories: ssh
 tags: tunnel socks5
 ---
