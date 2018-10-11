@@ -11,10 +11,3 @@ type: page
 
 ## 工具
 
-
-
-
-
-## Comments
-
-{% include comments.html %}
