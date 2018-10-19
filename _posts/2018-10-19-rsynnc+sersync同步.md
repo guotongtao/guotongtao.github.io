@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "rsync+sersync"
+title: "linux下rsync+sersync同步"
 categories: sersync
 tags: linux sersync sersync
 ---
