@@ -39,7 +39,6 @@ sersync是基于inotify开发的，类似于inotify-tools的工具，Sersync可�
 
 主要应用场景为数据体积大，并且文件很多。
 
-网站：（https://code.google.com）
 
 # 二、搭建步骤
 ## 系统环境
@@ -49,10 +48,10 @@ sersync是基于inotify开发的，类似于inotify-tools的工具，Sersync可�
 
 ## 接收端配置
 ### 1.安装rsync
-  yum install rsync
+yum install rsync
 
 ### 2.编辑rsync配置文件
-  /etc/rsyncd.conf 
+/etc/rsyncd.conf 
 ```
 uid = root
 gid = root
@@ -78,8 +77,9 @@ ypasswd
 ```    
         
 ### 3.启动rsync 服务
-rsync --daemon -4
---daemon 守护启动 -4 ipv4
+rsync --daemon -4  
+* --daemon 守护启动  
+* -4 ipv4
 
 ## 发送端配置
 ### 1.安装rsync
