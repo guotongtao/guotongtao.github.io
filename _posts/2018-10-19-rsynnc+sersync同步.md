@@ -6,14 +6,14 @@ tags: linux sersync sersync
 ---
 * content
 {:toc}
+
+
+
 # 一、基本介绍 
 ## 1.什么是Rsync?
 
-Rsync（Remote Synchronize）是一款开源的、快速的、多功能的、可以实现全量及增量的本地或远程数据同步备份的优秀工具，并且支持多种操作系统平台运行。
-官网文档[https://rsync.samba.org/ftp/rsync/rsync.html](https://rsync.samba.org/ftp/rsync/rsync.html)
-
-
-## 2.Rsync简介
+  Rsync（Remote Synchronize）是一款开源的、快速的、多功能的、可以实现全量及增量的本地或远程数据同步备份的优秀工具，并且支持多种操作系统平台运行。  
+官网文档：https://rsync.samba.org/ftp/rsync/rsync.html
 
 Rsync具有本地与远程两台主机之间的数据快速复制同步镜像、远程备份等功能，该功能类似scp，但是优于scp功能，还具有本地不同分区目录之间全量及增量复制数据。
 
@@ -21,17 +21,17 @@ Rsync同步数据镜像时，通过“quick check”算法，仅同步大小或�
 
 rsync 具有如下的基本特性：
 
-> 可以镜像保存整个目录树和文件系统
+* 可以镜像保存整个目录树和文件系统
 
-> 可以很容易做到保持原来文件的权限、时间、软硬链接等
+* 可以很容易做到保持原来文件的权限、时间、软硬链接等
 
-> 无须特殊权限即可安装
+* 无须特殊权限即可安装
 
->优化的流程，文件传输效率高
+* 优化的流程，文件传输效率高
 
->可以使用 rsh、ssh 方式来传输文件，当然也可以通过直接的 socket 连接
+* 可以使用 rsh、ssh 方式来传输文件，当然也可以通过直接的 socket 连接
 
->支持匿名传输，以方便进行网站镜象
+* 支持匿名传输，以方便进行网站镜象
 
 ## 3.什么Sersync？
 
