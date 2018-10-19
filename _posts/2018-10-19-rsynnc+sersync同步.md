@@ -43,16 +43,16 @@ sersync是基于inotify开发的，类似于inotify-tools的工具，Sersync可�
 
 # 二、搭建步骤
 ## 系统环境
-192.168.56.46 rsync 接收端 rsync
-192.168.56.94 rsync 发送端rsync + sersync=
-将192.168.56.94的/data/nginx/resty/nginx/cert/证书目录变化实时推送给192.168.56.46
+192.168.56.46 rsync 接收端 rsync  
+192.168.56.94 rsync 发送端rsync + sersync  
+将192.168.56.94的/data/nginx/resty/nginx/cert/证书目录变化实时推送给192.168.56.46  
 
 ## 接收端配置
 ### 1.安装rsync
-yum install rsync
+  yum install rsync
 
 ### 2.编辑rsync配置文件
-/etc/rsyncd.conf 
+  /etc/rsyncd.conf 
 ```
 uid = root
 gid = root
@@ -179,9 +179,9 @@ yuser:ypasswd
     </plugin>                                                                                           
 </head>
 ```
-###5.手动测试
+### 5.手动测试
 
-###6.启动sersync服务
+### 6.启动sersync服务
 /usr/local/sersync2 -d -r -o /usr/local/sersync/nginx.xml                                                                                            
 
 
