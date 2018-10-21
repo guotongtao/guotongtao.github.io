@@ -52,8 +52,7 @@ yum install rsync
 ```
 
 ### 2.编辑rsync配置文件
-> /etc/rsyncd.conf   
-
+> /etc/rsyncd.conf     
 ```
 uid = root
 gid = root
@@ -70,13 +69,10 @@ pid file = /var/run/rsyncd.pid
         hosts deny = *
         auth user = yuser
         secrets file = /etc/rsync.pas
-```
-
+```  
 > /etc/rsync.pas 
-
 ```
 ypasswd 
-
 ```    
         
 ### 3.启动rsync 服务
