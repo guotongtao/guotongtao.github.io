@@ -71,7 +71,8 @@ pid file = /var/run/rsyncd.pid
         auth user = yuser
         secrets file = /etc/rsync.pas
 ```  
-> /etc/rsync.pas 
+> /etc/rsync.pas
+
 ```
 ypasswd 
 ```    
