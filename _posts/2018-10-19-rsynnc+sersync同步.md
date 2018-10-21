@@ -108,7 +108,7 @@ yuser:ypasswd
  ```
 
 ### 5.编辑serync配置文件
-> /usr/local/sersync/nginx.xml 
+> /usr/local/sersync/nginx.xml
 ```                                                                                                        
 <head version="2.5">                                                                                    
     <host hostip="localhost" port="8008"></host>                                                        
