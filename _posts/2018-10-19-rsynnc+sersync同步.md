@@ -53,6 +53,7 @@ yum install rsync
 
 ### 2.编辑rsync配置文件
 > /etc/rsyncd.conf   
+
 ```
 uid = root
 gid = root
@@ -72,6 +73,7 @@ pid file = /var/run/rsyncd.pid
 ```
 
 > /etc/rsync.pas 
+
 ```
 ypasswd 
 
