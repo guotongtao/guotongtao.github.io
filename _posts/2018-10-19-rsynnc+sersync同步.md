@@ -104,7 +104,7 @@ yuser:ypasswd
 
 ### 4.手动传输测试
  ```
- opers rsync -avzP aa rsync@192.168.56.46::nginx-cert --password-file=/etc/rsync.pas
+ rsync -avzP aa rsync@192.168.56.46::nginx-cert --password-file=/etc/rsync.pas
  ```
 
 ### 5.编辑serync配置文件
