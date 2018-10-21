@@ -97,7 +97,7 @@ mkdir -p /usr/local/sersync
 mv  GNU-Linux-x86/{sersync2,confxml.xml} /usr/local/sersync/
 ```
 ### 3.编辑rsync配置文件
-> /etc/rsync.pas 
+> /etc/rsync.pas
 ```
 yuser:ypasswd
 ```
@@ -109,7 +109,7 @@ yuser:ypasswd
 
 ### 5.编辑serync配置文件
 > /usr/local/sersync/nginx.xml
-```                                                                                                        
+```
 <head version="2.5">                                                                                    
     <host hostip="localhost" port="8008"></host>                                                        
     <debug start="false"/>                                                                              
