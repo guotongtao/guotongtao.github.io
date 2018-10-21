@@ -42,16 +42,18 @@ sersync是基于inotify开发的，类似于inotify-tools的工具，Sersync可�
 
 # 二、搭建步骤
 ## 系统环境
-192.168.56.46 rsync 接收端 rsync  
-192.168.56.94 rsync 发送端rsync + sersync  
-将192.168.56.94的/data/nginx/resty/nginx/cert/证书目录变化实时推送给192.168.56.46  
+> 192.168.56.46 rsync 接收端 rsync  
+> 192.168.56.94 rsync 发送端rsync + sersync  
+> 将192.168.56.94的/data/nginx/resty/nginx/cert/证书目录变化实时推送给192.168.56.46  
 
 ## 接收端配置
 ### 1.安装rsync
+```
 yum install rsync
+```
 
 ### 2.编辑rsync配置文件
-/etc/rsyncd.conf 
+> /etc/rsyncd.conf 
 ```
 uid = root
 gid = root
@@ -70,14 +72,14 @@ pid file = /var/run/rsyncd.pid
         secrets file = /etc/rsync.pas
 ```      
 
-/etc/rsync.pas 
+> /etc/rsync.pas 
 ```
 ypasswd 
 
 ```    
         
 ### 3.启动rsync 服务
-rsync --daemon -4  
+> rsync --daemon -4  
 * --daemon 守护启动  
 * -4 ipv4
 
@@ -93,17 +95,19 @@ mkdir -p /usr/local/sersync
 mv  GNU-Linux-x86/{sersync2,confxml.xml} /usr/local/sersync/
 ```
 ### 3.编辑rsync配置文件
-/etc/rsync.pas   
+> /etc/rsync.pas   
 ```
 yuser:ypasswd
 
 ```
 ### 4.手动传输测试
+ ```
  opers rsync -avzP aa rsync@192.168.56.46::nginx-cert --password-file=/etc/rsync.pas
+ ```
 
 
-###5.编辑serync配置文件
-/usr/local/sersync/nginx.xml 
+### 5.编辑serync配置文件
+> /usr/local/sersync/nginx.xml 
 ```                                                                                                        
 <head version="2.5">                                                                                    
     <host hostip="localhost" port="8008"></host>                                                        
@@ -179,7 +183,6 @@ yuser:ypasswd
     </plugin>                                                                                           
 </head>
 ```
-### 5.手动测试
 
 ### 6.启动sersync服务
 /usr/local/sersync2 -d -r -o /usr/local/sersync/nginx.xml                                                                                            
