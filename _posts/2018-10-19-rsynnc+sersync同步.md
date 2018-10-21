@@ -10,7 +10,7 @@ tags: linux sersync sersync
 
 
 # 一、基本介绍 
-## 1.Rsync?
+## 1.Rsync
 
   Rsync（Remote Synchronize）是一款开源的、快速的、多功能的、可以实现全量及增量的本地或远程数据同步备份的优秀工具，并且支持多种操作系统平台运行。  
 官网文档：https://rsync.samba.org/ftp/rsync/rsync.html
@@ -99,6 +99,7 @@ mv  GNU-Linux-x86/{sersync2,confxml.xml} /usr/local/sersync/
 ```
 ### 3.编辑rsync配置文件
 > /etc/rsync.pas
+
 ```
 yuser:ypasswd
 ```
@@ -110,6 +111,7 @@ yuser:ypasswd
 
 ### 5.编辑serync配置文件
 > /usr/local/sersync/nginx.xml
+
 ```
 <head version="2.5">                                                                                    
     <host hostip="localhost" port="8008"></host>                                                        
