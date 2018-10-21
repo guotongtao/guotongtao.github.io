@@ -52,7 +52,8 @@ yum install rsync
 ```
 
 ### 2.编辑rsync配置文件
-> /etc/rsyncd.conf     
+> /etc/rsyncd.conf 
+
 ```
 uid = root
 gid = root
