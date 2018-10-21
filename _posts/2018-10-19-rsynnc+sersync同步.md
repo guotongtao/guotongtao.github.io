@@ -86,7 +86,9 @@ ypasswd
 
 ## 发送端配置
 ### 1.安装rsync
+```
 yum install rsync
+```
 
 ### 2.安装sersync
 ```
@@ -96,16 +98,17 @@ mkdir -p /usr/local/sersync
 mv  GNU-Linux-x86/{sersync2,confxml.xml} /usr/local/sersync/
 ```
 ### 3.编辑rsync配置文件
-> /etc/rsync.pas   
+> /etc/rsync.pas  
+
 ```
 yuser:ypasswd
 
 ```
+
 ### 4.手动传输测试
  ```
  opers rsync -avzP aa rsync@192.168.56.46::nginx-cert --password-file=/etc/rsync.pas
  ```
-
 
 ### 5.编辑serync配置文件
 > /usr/local/sersync/nginx.xml 
