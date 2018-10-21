@@ -188,7 +188,7 @@ yuser:ypasswd
 </head>
 
 ### 6.启动sersync服务
-/usr/local/sersync2 -d -r -o /usr/local/sersync/nginx-cert.xml                                                                                            
+/usr/local/sersync/sersync2 -d -r -o /usr/local/sersync/nginx-cert.xml                                                                                            
 
 
 
