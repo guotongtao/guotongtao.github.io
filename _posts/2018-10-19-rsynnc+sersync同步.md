@@ -113,7 +113,7 @@ yuser:ypasswd
  ```
 
 ### 5.编辑serync配置文件
-> /usr/local/sersync/nginx.xml
+> /usr/local/sersync/nginx-cert.xml
 
 ```
 <head version="2.5">                                                                                    
@@ -127,13 +127,10 @@ yuser:ypasswd
         <exclude expression="(.*)\.conf"></exclude>                                                      
         <exclude expression="(.*)\.env"></exclude>                                                      
         <exclude expression="(.*)\.header"></exclude>                                                                                                           
-        <exclude expression="^*logs"></exclude>                                                         
         <exclude expression="^/nginx/logs/*"></exclude>                                                 
         <exclude expression="^/ca"></exclude>
         <exclude expression="^/deploy"></exclude>
         <exclude expression="^/dnsapi"></exclude>
-        <exclude expression="^/ca"></exclude>
-        
         <exclude expression="^static/*"></exclude>                                                                                                            
     </filter>                                                                                           
     <inotify>                                                                                           
@@ -144,12 +141,12 @@ yuser:ypasswd
         <moveFrom start="true"/>                                                                        
         <moveTo start="true"/>                                                                          
         <attrib start="true"/>                                                                          
-        <modify start="false"/>                                                                         
+        <modify start="true"/>                                                                         
     </inotify>                                                                                          
                                                                                                         
     <sersync>                                                                                           
         <localpath watch="/data/opers/.acme.sh/">                                                           
-            <remote ip="192.168.56.96" name="nginx-cert"/>                                                   
+            <remote ip="192.168.56.46" name="nginx-cert"/>
         </localpath>                                                                                    
         <rsync>                                                                                         
             <commonParams params="-artuz"/>                                                             
@@ -189,10 +186,9 @@ yuser:ypasswd
         </localpath>                                                                                    
     </plugin>                                                                                           
 </head>
-```
 
 ### 6.启动sersync服务
-/usr/local/sersync2 -d -r -o /usr/local/sersync/nginx.xml                                                                                            
+/usr/local/sersync2 -d -r -o /usr/local/sersync/nginx-cert.xml                                                                                            
 
 
 
