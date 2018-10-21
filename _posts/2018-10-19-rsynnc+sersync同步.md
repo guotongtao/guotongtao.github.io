@@ -97,11 +97,9 @@ mkdir -p /usr/local/sersync
 mv  GNU-Linux-x86/{sersync2,confxml.xml} /usr/local/sersync/
 ```
 ### 3.编辑rsync配置文件
-> /etc/rsync.pas  
-
+> /etc/rsync.pas 
 ```
 yuser:ypasswd
-
 ```
 
 ### 4.手动传输测试
