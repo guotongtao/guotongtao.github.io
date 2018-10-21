@@ -76,7 +76,9 @@ ypasswd
 ```    
         
 ### 3.启动rsync 服务
-> rsync --daemon -4  
+```
+rsync --daemon -4
+```
 * --daemon 守护启动  
 * -4 ipv4
 
