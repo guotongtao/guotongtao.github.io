@@ -2,7 +2,7 @@
 layout: post
 title: "linux下rsync+sersync同步"
 categories: sersync
-tags: linux sersync sersync
+tags: linux rsync sersync
 ---
 * content
 {:toc}
