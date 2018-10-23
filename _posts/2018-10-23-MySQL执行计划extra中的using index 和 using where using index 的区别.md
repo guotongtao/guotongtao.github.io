@@ -5,5 +5,8 @@ categories: mysql
 tags: 索引 explain
 mathjax: true
 ---
+* content
+{:toc}
+
 
 https://www.linuxidc.com/Linux/2017-08/146297.htm
