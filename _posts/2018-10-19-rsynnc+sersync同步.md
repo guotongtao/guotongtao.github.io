@@ -106,7 +106,78 @@ mv  GNU-Linux-x86/{sersync2,confxml.xml} /usr/local/sersync/
 ```
 yuser:ypasswd
 ```
-
+> /usr/local/sersync/nginx-cert.xml
+ ```                                                                                 
+    <host hostip="localhost" port="8008"></host>                                                        
+    <debug start="false"/>                                                                              
+    <fileSystem xfs="false"/>                                                                           
+    <filter start="true">                                                                               
+        <exclude expression="(.*)\.svn"></exclude>                                                      
+        <exclude expression="(.*)\.pid"></exclude>                                                      
+        <exclude expression="(.*)\.log"></exclude>
+        <exclude expression="(.*)\.conf"></exclude>                                                      
+        <exclude expression="(.*)\.env"></exclude>                                                      
+        <exclude expression="(.*)\.header"></exclude>                                                                                                           
+        <exclude expression="^/nginx/logs/*"></exclude>                                                 
+        <exclude expression="^/ca"></exclude>
+        <exclude expression="^/deploy"></exclude>
+        <exclude expression="^/dnsapi"></exclude>
+        <exclude expression="^static/*"></exclude>                                                                                                            
+    </filter>                                                                                           
+    <inotify>                                                                                           
+        <delete start="true"/>                                                                          
+        <createFolder start="true"/>                                                                    
+        <createFile start="true"/>                                                                      
+        <closeWrite start="true"/>                                                                      
+        <moveFrom start="true"/>                                                                        
+        <moveTo start="true"/>                                                                          
+        <attrib start="true"/>                                                                          
+        <modify start="true"/>                                                                         
+    </inotify>                                                                                          
+                                                                                                        
+    <sersync>                                                                                           
+        <localpath watch="/data/opers/.acme.sh/">                                                           
+            <remote ip="192.168.56.46" name="nginx-cert"/>
+        </localpath>                                                                                    
+        <rsync>                                                                                         
+            <commonParams params="-artuz"/>                                                             
+            <auth start="false" users="root" passwordfile="/etc/rsync.pas"/>                            
+            <userDefinedPort start="false" port="874"/><!-- port=874 -->                                
+            <timeout start="false" time="100"/><!-- timeout=100 -->                                     
+            <ssh start="false"/>                                                                        
+        </rsync>                                                                                        
+        <failLog path="/usr/local/sersync/sersync_fail.sh" timeToExecute="60"/><!--default every 60mins execute once-->
+        <crontab start="false" schedule="600"><!--600mins-->                                            
+            <crontabfilter start="false">                                                               
+                <exclude expression="*.php"></exclude>                                                  
+                <exclude expression="info/*"></exclude>                                                 
+            </crontabfilter>                                                                            
+        </crontab>                                                                                      
+        <plugin start="false" name="command"/>                                                          
+    </sersync>                                                                                          
+                                                                                                        
+    <plugin name="command">                                                                             
+        <param prefix="/bin/sh" suffix="" ignoreError="true"/>  <!--prefix /opt/tongbu/mmm.sh suffix--> 
+        <filter start="false">                                                                          
+            <include expression="(.*)\.php"/>                                                           
+            <include expression="(.*)\.sh"/>                                                            
+        </filter>                                                                                       
+    </plugin>                                                                                           
+                                                                                                        
+    <plugin name="socket">                                                                              
+        <localpath watch="/opt/tongbu">                                                                 
+            <deshost ip="192.168.138.20" port="8009"/>                                                  
+        </localpath>                                                                                    
+    </plugin>                                                                                           
+    <plugin name="refreshCDN">                                                                          
+        <localpath watch="/data0/htdocs/cms.xoyo.com/site/">                                            
+            <cdninfo domainname="ccms.chinacache.com" port="80" username="xxxx" passwd="xxxx"/>         
+            <sendurl base="http://pic.xoyo.com/cms"/>                                                   
+            <regexurl regex="false" match="cms.xoyo.com/site([/a-zA-Z0-9]*).xoyo.com/images"/>          
+        </localpath>                                                                                    
+    </plugin>                                                                                           
+</head>
+```
 ### 4.手动传输测试
  ```
  rsync -avzP aa rsync@192.168.56.46::nginx-cert --password-file=/etc/rsync.pas
