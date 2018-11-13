@@ -78,7 +78,7 @@ pid file = /var/run/rsyncd.pid
 > /etc/rsync.pas
 
 ```
-ypasswd 
+yuser:ypasswd 
 ```    
         
 ### 3.启动rsync 服务
@@ -105,7 +105,7 @@ mv  GNU-Linux-x86/{sersync2,confxml.xml} /usr/local/sersync/
 > /etc/rsync.pas
 
 ```
-yuser:ypasswd
+ypasswd
 ```
 
 ### 4.手动传输测试
