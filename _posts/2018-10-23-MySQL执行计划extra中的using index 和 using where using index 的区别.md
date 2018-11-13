@@ -12,4 +12,4 @@ mathjax: true
 
 
 
-[MySQL执行计划extra中的using index 和 using where using index 的区别](https://www.linuxidc.com/Linux/2017-08/146297.html)
+[MySQL执行计划extra中的using index 和 using where using index 的区别](https://www.linuxidc.com/Linux/2017-08/146297.htm)
