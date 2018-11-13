@@ -116,7 +116,7 @@ ypasswd
 ### 5.编辑serync配置文件
 
 > /usr/local/sersync/nginx-cert.xml  
-[配置参数详解](https://cloud.tencent.com/info/498bf62a275ecba02751c184a3affabd.html) 
+[配置参数详解](https://www.linuxidc.com/Linux/2012-02/53572p3.htm) 
 
 ```
 <head version="2.5">                                                                                    
