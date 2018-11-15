@@ -79,7 +79,9 @@ pid file = /var/run/rsyncd.pid
 
 ```
 yuser:ypasswd 
-```    
+```
+> chmod 600 /etc/rsync.pas
+
         
 ### 3.启动rsync 服务
 ```
@@ -110,7 +112,7 @@ ypasswd
 
 ### 4.手动传输测试
  ```
- rsync -avzP aa rsync@192.168.56.46::nginx-cert --password-file=/etc/rsync.pas
+ rsync -avzP aa yuser@192.168.56.46::nginx-cert --password-file=/etc/rsync.pas
  ```
 
 ### 5.编辑serync配置文件
