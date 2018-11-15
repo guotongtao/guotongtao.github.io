@@ -72,7 +72,7 @@ pid file = /var/run/rsyncd.pid
         list = yes
         hosts allow = 192.168.56.94
         hosts deny = *
-        auth user = yuser
+        auth users = yuser
         secrets file = /etc/rsync.pas
 ```  
 > /etc/rsync.pas
