@@ -152,10 +152,11 @@ ypasswd
     <sersync>                                                                                           
         <localpath watch="/data/opers/.acme.sh/">                                                           
             <remote ip="192.168.56.46" name="nginx-cert"/>
+            <remote ip="192.168.56.47" name="nginx-cert"/>
         </localpath>                                                                                    
         <rsync>                                                                                         
             <commonParams params="-artuz"/>                                                             
-            <auth start="false" users="root" passwordfile="/etc/rsync.pas"/>                            
+            <auth start="true" users="yuser" passwordfile="/etc/rsync.pas"/>                            
             <userDefinedPort start="false" port="874"/><!-- port=874 -->                                
             <timeout start="false" time="100"/><!-- timeout=100 -->                                     
             <ssh start="false"/>                                                                        
