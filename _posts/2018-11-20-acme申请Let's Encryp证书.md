@@ -12,34 +12,32 @@ tags:  acme LetsEncrypt
 
 
 # 参考
-[github:https://github.com/Neilpang/acme.sh](github:https://github.com/Neilpang/acme.sh)
+github:[https://github.com/Neilpang/acme.sh](github:https://github.com/Neilpang/acme.sh)
 
 # 说明
 acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书.
 
 # 主要步骤:
 
-> 安装 acme.sh
-> 生成证书
-> copy 证书到 nginx/apache 或者其他服务
-> 更新证书
-> 更新 acme.sh
-> 出错怎么办, 如何调试
+> 安装 acme.sh  
+> 生成证书  
+> copy 证书到 nginx/apache 或者其他服务  
+> 更新证书  
+> 更新 acme.sh  
+> 出错怎么办, 如何调试  
 
-# 详细介绍.
+# 详细介绍
 ## 1. 安装 acme.sh
 安装很简单, 一个命令:
-
 curl  https://get.acme.sh | sh
 普通用户和 root 用户都可以安装使用. 安装过程进行了以下几步:
-
 把 acme.sh 安装到你的 home 目录下:
 ~/.acme.sh/
 并创建 一个 bash 的 alias, 方便你的使用: alias acme.sh=~/.acme.sh/acme.sh
 
 2). 自动为你创建 cronjob, 每天 0:00 点自动检测所有的证书, 如果快过期了, 需要更新, 则会自动更新证书.
 
-更高级的安装选项请参考: https://github.com/Neilpang/acme.sh/wiki/How-to-install
+更高级的安装选项请参考: [https://github.com/Neilpang/acme.sh/wiki/How-to-install](https://github.com/Neilpang/acme.sh/wiki/How-to-install)
 
 安装过程不会污染已有的系统任何功能和文件, 所有的修改都限制在安装目录中: ~/.acme.sh/
 
@@ -89,7 +87,7 @@ acme.sh   --issue   --dns dns_dp   -d aa.com  -d www.aa.com
 证书就会自动生成了. 这里给出的 api id 和 api key 会被自动记录下来, 将来你在使用 dnspod api 的时候, 就不需要再次指定了. 直接生成就好了:
 
 acme.sh  --issue   -d  mydomain2.com   --dns  dns_dp
-更详细的 api 用法: https://github.com/Neilpang/acme.sh/blob/master/dnsapi/README.md
+更详细的 api 用法: [https://github.com/Neilpang/acme.sh/blob/master/dnsapi/README.md](https://github.com/Neilpang/acme.sh/blob/master/dnsapi/README.md)
 
 ## 3. copy/安装 证书
 前面证书生成以后, 接下来需要把证书 copy 到真正需要用它的地方.
@@ -108,7 +106,7 @@ Nginx 的配置 ssl_certificate 使用 /etc/nginx/ssl/fullchain.cer ，而非 /e
 
 --installcert命令可以携带很多参数, 来指定目标文件. 并且可以指定 reloadcmd, 当证书更新以后, reloadcmd会被自动调用,让服务器生效.
 
-详细参数请参考: https://github.com/Neilpang/acme.sh#3-install-the-issued-cert-to-apachenginx-etc
+详细参数请参考: [https://github.com/Neilpang/acme.sh#3-install-the-issued-cert-to-apachenginx-etc](https://github.com/Neilpang/acme.sh#3-install-the-issued-cert-to-apachenginx-etc)
 
 值得注意的是, 这里指定的所有参数都会被自动记录下来, 并在将来证书自动更新以后, 被再次自动调用.
 
@@ -136,7 +134,7 @@ acme.sh  --issue  .....  --debug
 或者：
 
 acme.sh  --issue  .....  --debug  2
-请参考： https://github.com/Neilpang/acme.sh/wiki/How-to-debug-acme.sh
+请参考： [https://github.com/Neilpang/acme.sh/wiki/How-to-debug-acme.sh](https://github.com/Neilpang/acme.sh/wiki/How-to-debug-acme.sh)
 
 最后, 本文并非完全的使用说明, 还有很多高级的功能, 更高级的用法请参看其他 wiki 页面.
 
