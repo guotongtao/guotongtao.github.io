@@ -172,8 +172,8 @@ export GD_Key="dKYQLM3YuL8gxxx"
 export GD_Secret="3tw37xxx"
 
 环境变量只需要执行一次，执行成功后会在acccount.conf文件中记录下api key,多个dns解析商以不同的变量命名，如DNSPOD变量为SAVED_DP_Id，SAVED_DP_Key
-> cat account.conf
-SAVED_GD_Key='dKYQLM3YuL8g_3tvhy7etGoKejZbUHrCVh1'
+> cat account.conf  
+SAVED_GD_Key='dKYQLM3YuL8g_3tvhy7etGoKejZbUHrCVh1'  
 SAVED_GD_Secret='3tw37Q6CyiBHkrBYCtQgxo'
 
 ## 生成证书
@@ -213,13 +213,13 @@ ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  ex
 [Tue Nov 20 14:46:26 CST 2018] Skip, Next renewal time is: Sat Jan 19 03:00:13 UTC 2019
 [Tue Nov 20 14:46:26 CST 2018] Add '--force' to force to renew.
 ```
- ## 定时任务
+## 定时任务
  安装脚本时默认已添加  
  > crontab -l 
  ```
  25 0 * * * "/data/opers/.acme.sh"/acme.sh --cron --home "/data/opers/.acme.sh" > /dev/null
  ```
- ## nginx配置
+## nginx配置
 > vim s/data/nginx/resty/nginx/conf/nginx.conf  
    ```
    listen      443 ssl;        
@@ -237,7 +237,7 @@ ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  ex
   ssl_prefer_server_ciphers on;
    ```
 
- ## 推送服务
+## 推送证书
  
  参考:[sersync+rsync实时同步](https://www.guotongtao.com/2018/10/19/rsynnc+sersync%E5%90%8C%E6%AD%A5/)
  
@@ -248,6 +248,6 @@ ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  ex
  **接收端**  
  /usr/bin/rsync --daemon -4
  
- ## 监控服务  
+## 监控推送进程
  证书生成脚本已经放在crontab中执行  
  监控sersync2和rsync保证生产业务能获取到最新的证书
