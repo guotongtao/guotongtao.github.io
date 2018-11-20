@@ -17,7 +17,7 @@ github:[https://github.com/Neilpang/acme.sh](github:https://github.com/Neilpang/
 # 说明
 acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书.
 
-# 主要步骤:
+# 主要步骤
 
 > 安装 acme.sh  
 > 生成证书  
@@ -162,3 +162,72 @@ export GD_Key="dKYQLM3YuL8g_3tvhy7etGoKejZbUHrCVh1"
 export GD_Secret="3tw37Q6CyiBHkrBYCtQgxo"
 
 acme.sh --issue --dns dns_gd -d cmstech.sg -d *.cmstech.sg
+
+# 实例：
+以godaddy为例
+获取token:
+具体方法参考godaddy帮助手册
+export GD_Key="dKYQLM3YuL8gxxx"
+export GD_Secret="3tw37xxx"
+
+环境变量只需要执行一次，执行成功后会在acccount.conf文件中记录下api key,多个dns解析商以不同的变量命名，如DNSPOD变量为SAVED_DP_Id，SAVED_DP_Key
+cat account.conf
+SAVED_GD_Key='dKYQLM3YuL8g_3tvhy7etGoKejZbUHrCVh1'
+SAVED_GD_Secret='3tw37Q6CyiBHkrBYCtQgxo'
+
+生成证书
+acme.sh --issue --dns dns_dp -d example.sg -d *.example.sg --debug
+[Tue Nov 20 10:57:22 CST 2018] Creating domain key
+[Tue Nov 20 10:57:22 CST 2018] The domain key is here: /data/opers/.acme.sh/example.sg/example.sg.key
+[Tue Nov 20 10:57:22 CST 2018] Multi domain='DNS:cmstech.sg,DNS:*.cmstech.sg'
+[Tue Nov 20 10:57:22 CST 2018] Getting domain auth token for each domain
+[Tue Nov 20 10:57:25 CST 2018] Getting webroot for domain='cmstech.sg'
+[Tue Nov 20 10:57:25 CST 2018] Getting webroot for domain='*.cmstech.sg'
+[Tue Nov 20 10:57:25 CST 2018] Found domain api file: /data/opers/.acme.sh/dnsapi/dns_gd.sh
+[Tue Nov 20 10:57:28 CST 2018] Adding record
+[Tue Nov 20 10:57:28 CST 2018] Added, sleeping 10 seconds
+[Tue Nov 20 10:57:40 CST 2018] Found domain api file: /data/opers/.acme.sh/dnsapi/dns_gd.sh
+[Tue Nov 20 10:57:41 CST 2018] Adding record
+[Tue Nov 20 10:57:42 CST 2018] Added, sleeping 10 seconds
+[Tue Nov 20 10:57:53 CST 2018] Sleep 120 seconds for the txt records to take effect
+[Tue Nov 20 10:59:55 CST 2018] Verifying:cmstech.sg
+[Tue Nov 20 10:59:58 CST 2018] Success
+[Tue Nov 20 10:59:58 CST 2018] Verifying:*.cmstech.sg
+[Tue Nov 20 11:00:01 CST 2018] Success
+[Tue Nov 20 11:00:01 CST 2018] Removing DNS records.
+[Tue Nov 20 11:00:06 CST 2018] Verify finished, start to sign.
+[Tue Nov 20 11:00:13 CST 2018] Cert success.
+
+生成的证书文件
+ls /data/opers/.acme.sh/example.sg
+ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  example.sg.key  fullchain.cer
+
+如果在执行会提示下次自动更新时间，除非用--force参数强制生成
+[Tue Nov 20 14:46:26 CST 2018] Renew: 'cmstech.sg'                                     
+[Tue Nov 20 14:46:26 CST 2018] Skip, Next renewal time is: Sat Jan 19 03:00:13 UTC 2019
+[Tue Nov 20 14:46:26 CST 2018] Add '--force' to force to renew.
+                        
+   listen      443 ssl;        
+   server_name example.sg;
+   include /data/nginx/resty/nginx/conf/ssl/ssl_example.sg.conf;
+  
+vim s/data/nginx/resty/nginx/conf/ssl/ssl_example.sg.conf 
+  ssl_certificate   /data/nginx/resty/nginx/cert/example.sg/fullchain.cer;
+  ssl_certificate_key  /data/nginx/resty/nginx/cert/example.sg/aiopos.cn.key;
+  ssl_session_timeout 5m;
+  ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_prefer_server_ciphers on;
+crontab -l
+ 25 0 * * * "/data/opers/.acme.sh"/acme.sh --cron --home "/data/opers/.acme.sh" > /dev/null 
+ 
+ 发送端
+ sersync实时检测data/opers/.acme.sh目录下的证书更新，并通过rsync传输到接收端的nginx证书目录下
+ /usr/local/sersync/sersync2 -d -r -o /usr/local/sersync/nginx-cert.xml
+ 
+ 接收端
+ /usr/bin/rsync --daemon -4
+ 
+ 最后添加监控
+ 证书生成脚本已经放在crontab中执行  
+ 监控sersync2和rsync保证证书实施传输正常
