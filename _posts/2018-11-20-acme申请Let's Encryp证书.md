@@ -59,7 +59,7 @@ acme.sh --issue  -d mydomain.com   --nginx
 如果你还没有运行任何 web 服务, 80 端口是空闲的, 那么 acme.sh 还能假装自己是一个webserver, 临时听在80 端口, 完成验证:
 
 acme.sh  --issue -d mydomain.com   --standalone
-更高级的用法请参考: https://github.com/Neilpang/acme.sh/wiki/How-to-issue-a-cert
+更高级的用法请参考: [https://github.com/Neilpang/acme.sh/wiki/How-to-issue-a-cert](https://github.com/Neilpang/acme.sh/wiki/How-to-issue-a-cert)
 
 2). dns 方式, 在域名上添加一条 txt 解析记录, 验证域名所有权.
 这种方式的好处是, 你不需要任何服务器, 不需要任何公网 ip, 只需要 dns 的解析记录即可完成验证. 坏处是，如果不同时配置 Automatic DNS API，使用这种方式 acme.sh 将无法自动更新证书，每次都需要手动再次重新解析验证域名所有权。
@@ -138,7 +138,7 @@ acme.sh  --issue  .....  --debug  2
 
 最后, 本文并非完全的使用说明, 还有很多高级的功能, 更高级的用法请参看其他 wiki 页面.
 
-https://github.com/Neilpang/acme.sh/wiki
+[https://github.com/Neilpang/acme.sh/wiki](https://github.com/Neilpang/acme.sh/wiki)
 
 Buy me a beer, Donate to acme.sh if it saves your time. Your donation makes acme.sh better: https://donate.acme.sh/
 
@@ -146,7 +146,7 @@ Buy me a beer, Donate to acme.sh if it saves your time. Your donation makes acme
 
 
 
-https://github.com/Neilpang/acme.sh
+[https://github.com/Neilpang/acme.sh/wiki](https://github.com/Neilpang/acme.sh)
 
 dnspod:
 export DP_Id="69653"
