@@ -220,14 +220,14 @@ ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  ex
  25 0 * * * "/data/opers/.acme.sh"/acme.sh --cron --home "/data/opers/.acme.sh" > /dev/null
  ```
 ## nginx配置
-> vim s/data/nginx/resty/nginx/conf/nginx.conf  
+> vim /data/nginx/resty/nginx/conf/nginx.conf  
    ```
    listen      443 ssl;        
    server_name example.sg;
    include /data/nginx/resty/nginx/conf/ssl/ssl_example.sg.conf;
    ```
   
-> vim s/data/nginx/resty/nginx/conf/ssl/ssl_example.sg.conf 
+> vim /data/nginx/resty/nginx/conf/ssl/ssl_example.sg.conf 
   ```
   ssl_certificate   /data/nginx/resty/nginx/cert/example.sg/fullchain.cer;
   ssl_certificate_key  /data/nginx/resty/nginx/cert/example.sg/aiopos.cn.key;
