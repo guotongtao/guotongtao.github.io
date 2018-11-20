@@ -166,22 +166,23 @@ acme.sh --issue --dns dns_gd -d cmstech.sg -d *.cmstech.sg
 # 实例：
 以godaddy为例
 ## 获取token:
-具体方法参考godaddy帮助手册
+通过获取token，api自动添加和删除dns记录，获取token具体方法参考godaddy帮助手册
 ## 环境变量
-export GD_Key="dKYQLM3YuL8gxxx"
+export GD_Key="dKYQLM3YuL8gxxx"  
 export GD_Secret="3tw37xxx"
 
 环境变量只需要执行一次，执行成功后会在acccount.conf文件中记录下api key,多个dns解析商以不同的变量命名，如DNSPOD变量为SAVED_DP_Id，SAVED_DP_Key
-cat account.conf
+> cat account.conf
 SAVED_GD_Key='dKYQLM3YuL8g_3tvhy7etGoKejZbUHrCVh1'
 SAVED_GD_Secret='3tw37Q6CyiBHkrBYCtQgxo'
 
 ## 生成证书
-acme.sh --issue --dns dns_dp -d example.sg -d *.example.sg --debug
-[Tue Nov 20 10:57:22 CST 2018] Creating domain key
-[Tue Nov 20 10:57:22 CST 2018] The domain key is here: /data/opers/.acme.sh/example.sg/example.sg.key
-[Tue Nov 20 10:57:22 CST 2018] Multi domain='DNS:cmstech.sg,DNS:*.cmstech.sg'
-[Tue Nov 20 10:57:22 CST 2018] Getting domain auth token for each domain
+> acme.sh --issue --dns dns_dp -d example.sg -d *.example.sg --debug
+```
+[Tue Nov 20 10:57:22 CST 2018] Creating domain key  
+[Tue Nov 20 10:57:22 CST 2018] The domain key is here: /data/opers/.acme.sh/example.sg/example.sg.key  
+[Tue Nov 20 10:57:22 CST 2018] Multi domain='DNS:cmstech.sg,DNS:*.cmstech.sg'  
+[Tue Nov 20 10:57:22 CST 2018] Getting domain auth token for each domain 
 [Tue Nov 20 10:57:25 CST 2018] Getting webroot for domain='cmstech.sg'
 [Tue Nov 20 10:57:25 CST 2018] Getting webroot for domain='*.cmstech.sg'
 [Tue Nov 20 10:57:25 CST 2018] Found domain api file: /data/opers/.acme.sh/dnsapi/dns_gd.sh
@@ -198,19 +199,26 @@ acme.sh --issue --dns dns_dp -d example.sg -d *.example.sg --debug
 [Tue Nov 20 11:00:01 CST 2018] Removing DNS records.
 [Tue Nov 20 11:00:06 CST 2018] Verify finished, start to sign.
 [Tue Nov 20 11:00:13 CST 2018] Cert success.
+```
 
 生成的证书文件
-> ls /data/opers/.acme.sh/example.sg
+> ls /data/opers/.acme.sh/example.sg  
+```
 ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  example.sg.key  fullchain.cer
+```
 
-如果再次执行会提示下次自动更新时间，除非用--force参数强制生成
+如果再次执行会提示下次自动更新时间，除非用--force参数强制生成  
+```
 [Tue Nov 20 14:46:26 CST 2018] Renew: 'cmstech.sg'                                     
 [Tue Nov 20 14:46:26 CST 2018] Skip, Next renewal time is: Sat Jan 19 03:00:13 UTC 2019
 [Tue Nov 20 14:46:26 CST 2018] Add '--force' to force to renew.
+```
  ## 定时任务
- 安装脚本时默认已添加
- crontab -l
+ 安装脚本时默认已添加  
+ > crontab -l 
+ ```
  25 0 * * * "/data/opers/.acme.sh"/acme.sh --cron --home "/data/opers/.acme.sh" > /dev/null
+ ```
  ## nginx配置
 > vim s/data/nginx/resty/nginx/conf/nginx.conf  
    ```
@@ -231,15 +239,15 @@ ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  ex
 
  ## 推送服务
  
- 参考[sersync+rsync实时同步](https://www.guotongtao.com/2018/10/19/rsynnc+sersync%E5%90%8C%E6%AD%A5/)
+ 参考:[sersync+rsync实时同步](https://www.guotongtao.com/2018/10/19/rsynnc+sersync%E5%90%8C%E6%AD%A5/)
  
- **发送端**
+ **发送端**  
  sersync实时检测data/opers/.acme.sh目录下的证书更新，并通过rsync传输到接收端的nginx证书目录下
  /usr/local/sersync/sersync2 -d -r -o /usr/local/sersync/nginx-cert.xml
  
- **接收端**
+ **接收端**  
  /usr/bin/rsync --daemon -4
  
- ## 监控服务
+ ## 监控服务  
  证书生成脚本已经放在crontab中执行  
  监控sersync2和rsync保证生产业务能获取到最新的证书
