@@ -165,9 +165,9 @@ acme.sh --issue --dns dns_gd -d cmstech.sg -d *.cmstech.sg
 
 # 实例：
 以godaddy为例
-## 获取token:
+## 1、获取token:
 通过获取token，api自动添加和删除dns记录，获取token具体方法参考godaddy帮助手册
-## 环境变量
+## 2、环境变量
 export GD_Key="dKYQLM3YuL8gxxx"  
 export GD_Secret="3tw37xxx"
 
@@ -176,7 +176,7 @@ export GD_Secret="3tw37xxx"
 SAVED_GD_Key='dKYQLM3YuL8g_3tvhy7etGoKejZbUHrCVh1'  
 SAVED_GD_Secret='3tw37Q6CyiBHkrBYCtQgxo'
 
-## 生成证书
+## 3、生成证书
 > acme.sh --issue --dns dns_dp -d example.sg -d *.example.sg --debug
 ```
 [Tue Nov 20 10:57:22 CST 2018] Creating domain key  
@@ -213,13 +213,13 @@ ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  ex
 [Tue Nov 20 14:46:26 CST 2018] Skip, Next renewal time is: Sat Jan 19 03:00:13 UTC 2019
 [Tue Nov 20 14:46:26 CST 2018] Add '--force' to force to renew.
 ```
-## 定时任务
+## 4、定时任务
  安装脚本时默认已添加，申请的证书3个月期限，脚本提前一个月时间去自动更新证书  
  > crontab -l 
  ```
  25 0 * * * "/data/opers/.acme.sh"/acme.sh --cron --home "/data/opers/.acme.sh" > /dev/null
  ```
-## nginx配置
+## 5、nginx配置
 > vim /data/nginx/resty/nginx/conf/nginx.conf  
    ```
    listen      443 ssl;        
@@ -237,7 +237,7 @@ ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  ex
   ssl_prefer_server_ciphers on;
    ```
 
-## 推送证书
+## 6、推送证书
  
  参考:[sersync+rsync实时同步](https://www.guotongtao.com/2018/10/19/rsynnc+sersync%E5%90%8C%E6%AD%A5/)
  
@@ -248,6 +248,6 @@ ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  ex
  **接收端**  
  /usr/bin/rsync --daemon -4
  
-## 监控推送进程
+## 7、监控推送进程
  证书生成脚本已经放在crontab中执行  
  监控sersync2和rsync保证生产业务能获取到最新的证书
