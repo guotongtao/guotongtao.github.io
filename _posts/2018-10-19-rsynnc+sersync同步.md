@@ -90,6 +90,13 @@ rsync --daemon -4
 * --daemon 守护启动  
 * -4 ipv4
 
+### 4.rsync 加入开机启动服
+> vi /etc/rc.d/rc.local
+```
+rsync --daemon -4
+```
+
+
 ## 发送端配置
 ### 1.安装rsync
 ```
@@ -194,7 +201,14 @@ ypasswd
 </head>
 ```
 ### 6.启动sersync服务
-/usr/local/sersync/sersync2 -d -r -o /usr/local/sersync/nginx-cert.xml                                                                                            
+/usr/local/sersync/sersync2 -d -r -o /usr/local/sersync/nginx-cert.xml           
+
+### 7.sersync加入开机启动
+> vi /etc/rc.d/rc.local 
+```
+/usr/local/sersync/sersync2 -d -r -o /usr/local/sersync/nginx-cert.xml
+```
+
 
 
 
