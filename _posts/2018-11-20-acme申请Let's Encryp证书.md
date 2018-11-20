@@ -165,8 +165,9 @@ acme.sh --issue --dns dns_gd -d cmstech.sg -d *.cmstech.sg
 
 # 实例：
 以godaddy为例
-获取token:
+## 获取token:
 具体方法参考godaddy帮助手册
+## 环境变量
 export GD_Key="dKYQLM3YuL8gxxx"
 export GD_Secret="3tw37xxx"
 
@@ -175,7 +176,7 @@ cat account.conf
 SAVED_GD_Key='dKYQLM3YuL8g_3tvhy7etGoKejZbUHrCVh1'
 SAVED_GD_Secret='3tw37Q6CyiBHkrBYCtQgxo'
 
-生成证书
+## 生成证书
 acme.sh --issue --dns dns_dp -d example.sg -d *.example.sg --debug
 [Tue Nov 20 10:57:22 CST 2018] Creating domain key
 [Tue Nov 20 10:57:22 CST 2018] The domain key is here: /data/opers/.acme.sh/example.sg/example.sg.key
@@ -199,35 +200,46 @@ acme.sh --issue --dns dns_dp -d example.sg -d *.example.sg --debug
 [Tue Nov 20 11:00:13 CST 2018] Cert success.
 
 生成的证书文件
-ls /data/opers/.acme.sh/example.sg
+> ls /data/opers/.acme.sh/example.sg
 ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  example.sg.key  fullchain.cer
 
-如果在执行会提示下次自动更新时间，除非用--force参数强制生成
+如果再次执行会提示下次自动更新时间，除非用--force参数强制生成
 [Tue Nov 20 14:46:26 CST 2018] Renew: 'cmstech.sg'                                     
 [Tue Nov 20 14:46:26 CST 2018] Skip, Next renewal time is: Sat Jan 19 03:00:13 UTC 2019
 [Tue Nov 20 14:46:26 CST 2018] Add '--force' to force to renew.
-                        
+ ## 定时任务
+ 安装脚本时默认已添加
+ crontab -l
+ 25 0 * * * "/data/opers/.acme.sh"/acme.sh --cron --home "/data/opers/.acme.sh" > /dev/null
+ ## nginx配置
+> vim s/data/nginx/resty/nginx/conf/nginx.conf  
+   ```
    listen      443 ssl;        
    server_name example.sg;
    include /data/nginx/resty/nginx/conf/ssl/ssl_example.sg.conf;
+   ```
   
-vim s/data/nginx/resty/nginx/conf/ssl/ssl_example.sg.conf 
+> vim s/data/nginx/resty/nginx/conf/ssl/ssl_example.sg.conf 
+  ```
   ssl_certificate   /data/nginx/resty/nginx/cert/example.sg/fullchain.cer;
   ssl_certificate_key  /data/nginx/resty/nginx/cert/example.sg/aiopos.cn.key;
   ssl_session_timeout 5m;
   ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
   ssl_prefer_server_ciphers on;
-crontab -l
- 25 0 * * * "/data/opers/.acme.sh"/acme.sh --cron --home "/data/opers/.acme.sh" > /dev/null 
+   ```
+
+ ## 推送服务
  
- 发送端
+ 参考[sersync+rsync实时同步](https://www.guotongtao.com/2018/10/19/rsynnc+sersync%E5%90%8C%E6%AD%A5/)
+ 
+ **发送端**
  sersync实时检测data/opers/.acme.sh目录下的证书更新，并通过rsync传输到接收端的nginx证书目录下
  /usr/local/sersync/sersync2 -d -r -o /usr/local/sersync/nginx-cert.xml
  
- 接收端
+ **接收端**
  /usr/bin/rsync --daemon -4
  
- 最后添加监控
+ ## 监控服务
  证书生成脚本已经放在crontab中执行  
- 监控sersync2和rsync保证证书实施传输正常
+ 监控sersync2和rsync保证生产业务能获取到最新的证书
