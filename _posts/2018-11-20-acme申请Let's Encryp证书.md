@@ -214,7 +214,7 @@ ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  ex
 [Tue Nov 20 14:46:26 CST 2018] Add '--force' to force to renew.
 ```
 ## 定时任务
- 安装脚本时默认已添加  
+ 安装脚本时默认已添加，申请的证书3个月期限，脚本提前一个月时间去自动更新证书  
  > crontab -l 
  ```
  25 0 * * * "/data/opers/.acme.sh"/acme.sh --cron --home "/data/opers/.acme.sh" > /dev/null
