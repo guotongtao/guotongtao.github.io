@@ -300,10 +300,18 @@ do
   fi
 done
 ```
-chmod +x /data/opers/bin/monitor_cert_file.sh 
-
-sudo nohup /data/opers/bin/monitor_cert_file.sh &
+赋可执行权限  
+chmod +x /data/opers/bin/monitor_cert_file.sh  
+后台启动  
+sudo nohup /data/opers/bin/monitor_cert_file.sh &  
+加入开机启动  
+echo "su - opers -c "sudo nohup /data/opers/bin/monitor_cert_file.sh &"" >> /etc/rc.d/rc.local 
 
 ## 8、监控推送进程
  证书生成脚本已经放在crontab中执行  
  监控sersync2和rsync保证生产业务能获取到最新的证书
+ vim /data/monitor/cfg/m_process32.cfg 
+ root::rsync
+ root::sersync
+ 监控monitor_cert_file.sh保证证书更新时nginx重新载入
+ root::monitor_cert_file
