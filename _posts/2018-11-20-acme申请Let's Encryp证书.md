@@ -301,7 +301,9 @@ do
 done
 ```
 chmod +x /data/opers/bin/monitor_cert_file.sh 
+
 sudo nohup /data/opers/bin/monitor_cert_file.sh &
+
 ## 8、监控推送进程
  证书生成脚本已经放在crontab中执行  
  监控sersync2和rsync保证生产业务能获取到最新的证书
