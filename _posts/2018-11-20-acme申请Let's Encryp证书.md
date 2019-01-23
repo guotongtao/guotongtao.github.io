@@ -235,7 +235,7 @@ ca.cer  example.sg.cer  example.sg.conf  example.sg.csr  example.sg.csr.conf  ex
  **接收端**  
  /usr/bin/rsync --daemon -4
 ## 7、重新载入nginx配置
-用脚本监测证书文件变化，自动reload nginx 
+用脚本监测证书文件变化，自动reload nginx   
 vim /data/opers/bin/monitor_cert_file.sh
 ```
 #!/bin/bash
