@@ -164,7 +164,7 @@ SAVED_GD_Key=''
 SAVED_GD_Secret=''
 
 ## 3、生成证书
-> acme.sh --issue --dns dns_dp -d example.sg -d *.example.sg --debug
+> acme.sh --issue --dns dns_gd -d example.sg -d *.example.sg --debug
 ```
 [Tue Nov 20 10:57:22 CST 2018] Creating domain key  
 [Tue Nov 20 10:57:22 CST 2018] The domain key is here: /data/opers/.acme.sh/example.sg/example.sg.key  
