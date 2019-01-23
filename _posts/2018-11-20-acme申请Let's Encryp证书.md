@@ -148,20 +148,7 @@ Buy me a beer, Donate to acme.sh if it saves your time. Your donation makes acme
 
 [https://github.com/Neilpang/acme.sh/wiki](https://github.com/Neilpang/acme.sh)
 
-dnspod:
-export DP_Id="69653"
-export DP_Key="399853531f449f4e233f46793e72dea3"
-acme.sh --issue --dns dns_dp -d catail.cn -d *.catail.cn --debug
-acme.sh --issue --dns dns_dp -d aiopos.cn -d *.aiopos.cn --debug
-acme.sh --issue --dns dns_dp -d aoepos.cn -d *.aoepos.cn  --debug
-acme.sh --issue --dns dns_dp -d aoepos.com -d *.aoepos.com --debug
 
-
-godaddy:
-export GD_Key="dKYQLM3YuL8g_3tvhy7etGoKejZbUHrCVh1"
-export GD_Secret="3tw37Q6CyiBHkrBYCtQgxo"
-
-acme.sh --issue --dns dns_gd -d cmstech.sg -d *.cmstech.sg
 
 # 实例：
 以godaddy为例
@@ -173,8 +160,8 @@ export GD_Secret="3tw37xxx"
 
 环境变量只需要执行一次，执行成功后会在acccount.conf文件中记录下api key,多个dns解析商以不同的变量命名，如DNSPOD变量为SAVED_DP_Id，SAVED_DP_Key
 > cat account.conf  
-SAVED_GD_Key='dKYQLM3YuL8g_3tvhy7etGoKejZbUHrCVh1'  
-SAVED_GD_Secret='3tw37Q6CyiBHkrBYCtQgxo'
+SAVED_GD_Key=''  
+SAVED_GD_Secret=''
 
 ## 3、生成证书
 > acme.sh --issue --dns dns_dp -d example.sg -d *.example.sg --debug
