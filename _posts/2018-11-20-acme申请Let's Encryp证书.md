@@ -314,4 +314,4 @@ echo "su - opers -c "sudo nohup /data/opers/bin/monitor_cert_file.sh &"" >> /etc
  root::rsync  
  root::sersync  
  监控monitor_cert_file.sh保证证书更新时nginx重新载入  
- root::monitor_cert_file  
+ root::monitor_cert_file.sh  
