@@ -96,7 +96,7 @@ acme.sh  --issue   -d  mydomain2.com   --dns  dns_dp
 
 正确的使用方法是使用 --installcert 命令,并指定目标位置, 然后证书文件会被copy到相应的位置, 例如:
 
-acme.sh  - -installcert  -d  <domain>.com   \
+acme.sh  ‘--’installcert  -d  <domain>.com   \
         --key-file   /etc/nginx/ssl/<domain>.key \
         --fullchain-file /etc/nginx/ssl/fullchain.cer \
         --reloadcmd  "service nginx force-reload"
