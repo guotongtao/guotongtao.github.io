@@ -96,14 +96,10 @@ acme.sh  --issue   -d  mydomain2.com   --dns  dns_dp
 
 正确的使用方法是使用 --installcert 命令,并指定目标位置, 然后证书文件会被copy到相应的位置, 例如:
 
-acme.sh  
-        --installcert  -d  <domain>.com
-        
-        --key-file   /etc/nginx/ssl/<domain>.key
-        
-        --fullchain-file /etc/nginx/ssl/fullchain.cer
-        
-        --reloadcmd  "service nginx force-reload"
+acme.sh  --installcert  -d  <domain>.com  
+        --key-file   /etc/nginx/ssl/<domain>.key  
+        --fullchain-file /etc/nginx/ssl/fullchain.cer 
+       --reloadcmd  "service nginx force-reload"  
 (一个小提醒, 这里用的是 service nginx force-reload, 不是 service nginx reload, 据测试, reload 并不会重新加载证书, 所以用的 force-reload)
 
 Nginx 的配置 ssl_certificate 使用 /etc/nginx/ssl/fullchain.cer ，而非 /etc/nginx/ssl/<domain>.cer ，否则 SSL Labs 的测试会报 Chain issues Incomplete 错误。
