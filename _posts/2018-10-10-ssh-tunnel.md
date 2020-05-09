@@ -1,13 +1,14 @@
+---
+layout: post
+title: "ssh隧道及代理"
+categories: ssh
+tags: tunnel socks5
 ---  
-layout: post  
-title: "ssh隧道及代理"  
-categories: ssh  
-tags: tunnel socks5  
----  
-* content  
+
+* content
 {:toc}
 
-444   
+444  
 ssh是用来远程登录主机的作用大家都知道，而且传输的内容全部经过加密处理也是大家喜欢其的主要因素。但其实ssh能做的更多，例如作为代理服务器。
 
 
