@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "ssh隧道及代理"
-date:   2011-04-12 15:14:54
-categories: ssh
-tags: tunnel socks5
----  
+title:  "同步一个 fork"
+date:   2015-04-12 15:14:54
+categories: GitHub
+tags: GitHub 同步 fork
+---
 
 * content
 {:toc}
