@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ssh隧道及代理"
-date:   2015-04-12 15:14:54
+date:   2011-04-12 15:14:54
 categories: ssh
 tags: tunnel socks5
 ---  
