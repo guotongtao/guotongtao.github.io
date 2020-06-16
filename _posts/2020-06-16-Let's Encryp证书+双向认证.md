@@ -1,6 +1,18 @@
+
+---  
+layout: post  
+title: "ssl证书申请+双向认证"  
+categories: nginx ssl  
+tags: nginx ssl
+---  
+* content
+{:toc}
+
+
 # ssl证书申请并自动续期  
 ## 环境  
 zys024 172.17.73.123  
+
 ## 安装acme.sh  
 安装很简单, 一个命令:  
 curl  https://get.acme.sh | sh
@@ -15,12 +27,14 @@ curl  https://get.acme.sh | sh
 * 2). 自动为你创建 cronjob, 每天 0:00 点自动检测所有的证书, 如果快过期了, 需要更新, 则会自动更新证书.  
 更高级的安装选项请参考: https://github.com/Neilpang/acme.sh/wiki/How-to-install  
 安装过程不会污染已有的系统任何功能和文件, 所有的修改都限制在安装目录中: ~/.acme.sh/  
+
 ## 创建阿里云api key,授权dns解析管理权限  
 通过获取token，api自动添加和删除dns记录  
 配置环境变量key  
 export Ali_Key="xxxxx"  
 export Ali_Secret="xxx"  
  这里给出的 api id 和 api key 会被自动记录下来, 将来你在使用 dnspod api 的时候, 就不需要再次指定了. 直接生成就好了  
+
 ## 申请证书  
 /root/.acme.sh/acme.sh --issue --dns dns_ali -d psbsafenter.cn -d *.psbsafenter.cn  
 -----END CERTIFICATE-----  
