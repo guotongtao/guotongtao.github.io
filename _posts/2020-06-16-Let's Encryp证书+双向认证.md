@@ -1,12 +1,12 @@
-
 ---  
 layout: post  
 title: "ssl证书申请+双向认证"  
-categories: nginx ssl  
-tags: nginx ssl
+categories: ssl nginx  
+tags: letsencrypto acme nginx ssl
 ---  
-* content
-{:toc}
+
+* content  
+{:toc}  
 
 
 # ssl证书申请并自动续期  
